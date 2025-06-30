@@ -1,0 +1,26 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: .6rem;
+    background-color: #24283b;
+    color: #7aa2f7;
+    width: 16rem;
+    height: 16rem;
+}
+
+h3 {
+    font-weight: 800;
+    padding: .5rem;
+    font: bold;
+    font-size: 2rem;
+}
+
+#toggle-btn {
+    width: 5rem;
+    border-radius: 9999999999rem;
+    height: 5rem;
+    font: bold;
+    font-size: medium;
+    border: none;
+}
