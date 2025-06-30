@@ -1,11 +1,8 @@
 ![image](https://github.com/user-attachments/assets/0375c6ea-234b-4d69-8608-0c9d887e7c7d)
 Are you Doom Scroling ? Are get traped in shorts and youtube feed? fear no more! you can Focous now! just start Focous!
 
-## FOCUS 
+# <img src="https://github.com/user-attachments/assets/081309f3-d4be-41b0-a3d7-85b8dedd561f" width="24" alt="Focus icon" /> FOCUS 
 
-<img src="https://github.com/user-attachments/assets/081309f3-d4be-41b0-a3d7-85b8dedd561f" width="24" alt="Focus icon" />
-&nbsp;
-![Focus](https://img.shields.io/badge/Chrome%20Extension-Focus-7AA2F7?style=for-the-badge&logo=googlechrome&logoColor=white)
 
 
 Features
