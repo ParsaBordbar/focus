@@ -3,7 +3,10 @@
   "name": "Focus",
   "version": "1.0",
   "description": "Hide all distraction, like YT shorts.",
-  "permissions": ["scripting", "storage", "tabs"],
+  "permissions": ["scripting", "storage", "tabs", "bookmarks"],
+  "background": {
+  "service_worker": "background.js"
+  },
   "host_permissions": [
     "https://www.youtube.com/*",
     "https://www.tiktok.com/*",
@@ -38,10 +41,10 @@
     "default_title": "Focus",
     "default_popup": "popup.html",
     "default_icon": {
-    "128": "icons/icon128.png"
+    "128": "icons/icon128_on.png"
   },
   "icons": {
-  "128": "icons/icon128.png"
+    "128": "icons/icon128_off.png"
   }  
 }
 }
