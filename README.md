@@ -13,7 +13,5 @@ Features
 - Remembers your setting using
 - Custom redirections for focus!
 you can set Dopamine Websites in you're bookmarks & Good Sources to makes it redirect to one of them randomly!
-
-
-Uploading redirections.mp4…
+https://github.com/user-attachments/assets/7b83380e-d922-47f4-b430-f2142113c071
 
