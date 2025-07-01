@@ -5,11 +5,31 @@
   "description": "Hide all distraction, like YT shorts.",
   "permissions": ["scripting", "storage", "tabs"],
   "host_permissions": [
-    "https://www.youtube.com/*"
+    "https://www.youtube.com/*",
+    "https://www.tiktok.com/*",
+    "https://www.instagram.com/*",
+    "https://github.com/*",
+    "https://www.wikipedia.org/*",
+    "https://go.dev/doc/*",
+    "https://doc.rust-lang.org/book/title-page.html*",
+    "https://www.notion.com/*",
+    "https://www.w3schools.com/*",
+    "https://www.freecodecamp.org/*",
+    "https://www.youtube.com/c/LofiGirl*",
+    "https://www.youtube.com/bpluspodcast*",
+    "https://channelbpodcast.com/*",
+    "https://bpluspodcast.com/*",
+    "https://www.youtube.com/c/jadimirmirani*",
+    "https://medium.com/@imaginetta/150-educational-websites-for-lifelong-learners-71c1d8e94843*",
+    "https://linux1st.com/*"
   ],
   "content_scripts": [
     {
-      "matches": ["*://www.youtube.com/*"],
+"matches": [
+      "*://www.youtube.com/*",
+      "*://www.tiktok.com/*",
+      "*://www.instagram.com/*"
+    ],
       "js": ["content.js"],
       "run_at": "document_idle"
     }
