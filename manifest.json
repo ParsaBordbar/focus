@@ -31,7 +31,10 @@
 "matches": [
       "*://www.youtube.com/*",
       "*://www.tiktok.com/*",
-      "*://www.instagram.com/*"
+      "*://www.instagram.com/*",
+      "*://www.porn/*",
+      "*://x.com/*",
+      "*://www.x/*"
     ],
       "js": ["content.js"],
       "run_at": "document_idle"
