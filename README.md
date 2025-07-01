@@ -11,3 +11,9 @@ Features
 - Hides Shorts sidebar and top nav icons
 - Toggle on/off from a simple popup
 - Remembers your setting using
+- Custom redirections for focus!
+you can set Dopamine Websites in you're bookmarks & Good Sources to makes it redirect to one of them randomly!
+
+
+Uploading redirections.mp4…
+
