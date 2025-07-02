@@ -5,7 +5,7 @@ Are you Doom Scroling ? Are you getting traped in shorts & youtube feed? fear no
 # <img src="https://github.com/user-attachments/assets/081309f3-d4be-41b0-a3d7-85b8dedd561f" width="24" alt="Focus icon" /> FOCUS 
 
 
-## 🚀 Features
+## Features
 
 https://github.com/user-attachments/assets/7b83380e-d922-47f4-b430-f2142113c071
 - Automatically redirects from distracting websites (e.g. TikTok, Instagram, Shorts)
@@ -39,20 +39,16 @@ Click on the Focus icon in your extensions bar and use the switch to toggle prot
 ### 🔄 Customize Sites
 You can add your own distracting websites and good redirection destinations using Chrome Bookmarks:
 
-Open chrome://bookmarks/
+1- Open chrome://bookmarks/
 
-Create a new folder called:
+2- Create a new folder called:
+- Dopamine Sites → for websites you want to avoid
+- Good Sources → for websites you want to be redirected to
 
-Dopamine Sites → for websites you want to avoid
+3- Add any URLs into these folders. Examples:
 
-Good Sources → for websites you want to be redirected to
-
-Add any URLs into these folders. Examples:
-
-Dopamine Sites: https://www.reddit.com, https://twitter.com
-
-Good Sources: https://wikipedia.org, https://github.com
-
+- Dopamine Sites: https://www.reddit.com, https://twitter.com
+- Good Sources: https://wikipedia.org, https://github.com
 The extension will automatically read these folders and update the blocking/redirect logic.
 
 ### Dopamine Sites (blocked by default)
