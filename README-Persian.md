@@ -1,9 +1,8 @@
 ![image](https://github.com/user-attachments/assets/a7c293b5-acbd-47dd-acbd-bd0fdd27adcd)
 
 ایا شما از اسکرول کردن بی‌نهایت در وبسایت‌های دپامینی خسته شدید؟ به تمرکز نیاز دارید؟ این شما و این افزونه‌ی Focus برای تمرکز بیشتر!
-# <img src="https://github.com/user-attachments/assets/081309f3-d4be-41b0-a3d7-85b8dedd561f" width="24" alt="Focus icon" /> FOCUS 
+# <img src="https://github.com/user-attachments/assets/081309f3-d4be-41b0-a3d7-85b8dedd561f" width="24" alt="Focus icon" /> افزونه Focus 
 
-# افزونه Focus
 
 افزونه‌ای برای افزایش تمرکز و جلوگیری از حواس‌پرتی در فضای آنلاین:
 
