@@ -3,6 +3,7 @@
 Are you Doom Scroling ? Are you getting traped in shorts & youtube feed? fear not! you can Focous now! just start Focus!
 
 # <img src="https://github.com/user-attachments/assets/081309f3-d4be-41b0-a3d7-85b8dedd561f" width="24" alt="Focus icon" /> FOCUS 
+[![نسخه فارسی](https://img.shields.io/badge/نسخه_فارسی-README-green?style=flat-square)](https://github.com/ParsaBordbar/focus/blob/main/README-Persian.md)
 
 
 ## Features
