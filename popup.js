@@ -25,6 +25,6 @@ document.addEventListener("DOMContentLoaded", () => {
     btn.style.color = 'white';
     btn.style.fontSize = '1.2rem';
     btn.textContent = enabled ? "End" : "Start";
-    btn.style.backgroundColor = enabled ? "#965027" : "#bb9af7";
+    // btn.style.backgroundColor = enabled ? "#965027" : "#bb9af7";
   }
 });

@@ -1,35 +1,103 @@
+@import url("https://fonts.googleapis.com/css2?family=Nova+Square&display=swap");
+
 .nova-square-regular {
   font-family: "Nova Square", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
 
-
+html,
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: .6rem;
-    background-color: #24283b;
-    color: #7aa2f7;
-    width: 16rem;
-    height: 16rem;
-    font-family: "Nova Square", sans-serif;
+  margin: 0;
+  padding: 0;
+  width: 16rem;
+  height: 16rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #7aa2f7;
+  font-family: "Nova Square", sans-serif;
+  overflow: hidden;
+  background: linear-gradient(135deg, #e76366 ,#e76366, #8355eb ,  #8355eb, #e76366);
+  background-size: 100% 200%;
+  animation: gradientShift 10s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Glass container */
+.glass-container {
+  backdrop-filter: blur(18px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  background-color: rgba(255, 255, 255, 0.908);
+  border-radius: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow:
+    0 0 20px rgba(122, 162, 247, 0.2),
+    inset 0 0 15px rgba(255, 255, 255, 0.05);
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.glass-container:hover {
+  box-shadow:
+    0 0 25px rgba(122, 162, 247, 0.4),
+    inset 0 0 25px rgba(255, 255, 255, 0.1);
 }
 
 h3 {
-    font-weight: 800;
-    padding: .5rem;
-    font: bold;
-    font-size: 2rem;
+  font-weight: 800;
+  font-size: 2rem;
+  letter-spacing: 1px;
+  color: #c0caf5;
+  text-shadow: 0 0 10px rgba(122, 162, 247, 0.6);
+  margin-bottom: 1.2rem;
 }
 
 #toggle-btn {
-    width: 5rem;
-    border-radius: 9999999999rem;
-    height: 5rem;
-    font: bold;
-    font-size: medium;
-    border: none;
-    font-family: "Nova Square", sans-serif;
+  width: 5rem;
+  height: 5rem;
+  margin: .4rem;
+  margin-top: 1.2rem;
+  border: solid .02 white;
+  border-radius: 999rem;
+  border: none;
+  background: linear-gradient(145deg, #7aa2f74d, rgba(255, 255, 255, 0.19));
+  box-shadow:
+    0 4px 15px rgba(122, 162, 247, 0.25),
+    inset 0 0 20px rgba(255, 255, 255, 0.1);
+  color: #c0caf5;
+  font-weight: 700;
+  font-size: 1rem;
+  font-family: "Nova Square", sans-serif;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+#toggle-btn:hover {
+  background: linear-gradient(145deg, rgba(122, 162, 247, 0.3), rgba(255, 255, 255, 0.19));
+  box-shadow:
+    0 6px 20px rgba(122, 162, 247, 0.45),
+    inset 0 0 25px rgba(184, 183, 183, 0.2);
+
+  transform: scale(1.05);
+}
+
+#toggle-btn:active {
+  transform: scale(0.95);
+  box-shadow:
+    0 2px 10px rgba(122, 162, 247, 0.4),
+    inset 0 0 10px rgba(255, 255, 255, 0.1);
 }
