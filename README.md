@@ -1,8 +1,7 @@
-![image](https://github.com/user-attachments/assets/a7c293b5-acbd-47dd-acbd-bd0fdd27adcd)
+<img width="1924" height="999" alt="image" src="https://github.com/user-attachments/assets/0689c340-3f66-41c9-a85a-6e95c0129797" />
 
 Are you Doom Scroling ? Are you getting traped in shorts & youtube feed? fear not! you can Focous now! just start Focus!
 
-<img width="1924" height="999" alt="image" src="https://github.com/user-attachments/assets/0689c340-3f66-41c9-a85a-6e95c0129797" />
 [![نسخه فارسی](https://img.shields.io/badge/نسخه_فارسی-README-green?style=flat-square)](https://github.com/ParsaBordbar/focus/blob/main/README-Persian.md)
 
 
