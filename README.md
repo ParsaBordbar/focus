@@ -21,7 +21,7 @@ https://github.com/user-attachments/assets/7b83380e-d922-47f4-b430-f2142113c071
 1. Clone or download this repository:
 
 ```bash
-git clone https://github.com/your-username/focus-extension.git
+git clone https://github.com/your-username/focus.git
 ```
 
 Open Chrome and go to:
