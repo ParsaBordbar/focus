@@ -1,4 +1,4 @@
-<img width="1924" height="999" alt="image" src="https://github.com/user-attachments/assets/0689c340-3f66-41c9-a85a-6e95c0129797" />
+<img width="1470" height="934" alt="image" src="https://github.com/user-attachments/assets/34de1a1b-379c-4d6a-819c-90096dcd4718" />
 
 Are you Doom Scroling ? Are you getting traped in shorts & youtube feed? fear not! you can Focous now! just start Focus!
 
