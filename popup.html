@@ -3,20 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-      body { font-family: sans-serif; padding: 10px; }
-    </style>
     <link rel="stylesheet" href="popup.css" />
-    <style>
-    @import url('https://fonts.googleapis.com/css2?family=Nova+Square&display=swap');
-    </style>
 </head>
-<body class="glass-containe">
+<body>
+    <!-- Background layers: noise, lines and scribbles while distracted; calm takes over when focused. -->
+    <div class="layer calm" aria-hidden="true"></div>
+    <div class="layer lines" aria-hidden="true"></div>
+    <div class="layer clutter" aria-hidden="true">
+        <svg id="clutter" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice"></svg>
+    </div>
+    <div class="layer noise" aria-hidden="true"></div>
+
+    <button id="settings-btn" class="icon icon-left glass chrome" title="Settings">
+        <img src="./icons/settingsIcon.svg" alt="Settings">
+    </button>
     <a target="_blank" href="https://github.com/ParsaBordbar/focus/blob/main/README.md">
-        <img class="icon glass" src="./icons/quetion.svg" alt="">
+        <img class="icon glass chrome" src="./icons/quetion.svg" alt="Help">
     </a>
+    <svg id="ring" viewBox="0 0 100 100" aria-hidden="true">
+        <circle class="track" cx="50" cy="50" r="46" pathLength="100"></circle>
+        <circle class="progress" cx="50" cy="50" r="46" pathLength="100"></circle>
+        <circle class="hold" cx="50" cy="50" r="46" pathLength="100"></circle>
+    </svg>
     <button id="toggle-btn">Loading...</button>
-    <h3>Focus</h3>
+    <p id="hint" role="status"></p>
+    <input id="session-name" type="text" maxlength="60" placeholder="Name this session (optional)" aria-label="Session name" autocomplete="off" spellcheck="false">
+    <p id="session-label"></p>
+    <script src="shared.js"></script>
     <script src="popup.js"></script>
 </body>
 </html>

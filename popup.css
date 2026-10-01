@@ -18,9 +18,14 @@ body {
   color: #7aa2f7;
   font-family: "Nova Square", sans-serif;
   overflow: hidden;
-  background: linear-gradient(135deg, #e76366 ,#e76366, #8355eb ,  #8355eb, #e76366);
+  /* Distracted: Focus-mode navy with a restless red tint. */
+  background: linear-gradient(135deg, #3b2133, #24283b, #1f2335, #2a1f30, #3b2133);
   background-size: 100% 200%;
   animation: gradientShift 10s ease infinite;
+}
+
+body {
+  position: relative;
 }
 
 @keyframes gradientShift {
@@ -33,6 +38,103 @@ body {
   100% {
     background-position: 0% 50%;
   }
+}
+
+/* Background layers */
+.layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Transitions switch on after the first render so the popup doesn't animate on open. */
+body.ready .layer {
+  transition:
+    opacity .9s ease,
+    transform 1s cubic-bezier(.7, 0, .2, 1);
+}
+
+.calm {
+  opacity: 0;
+  background: radial-gradient(circle at 50% 50%, #24283b 0%, #1a1b26 55%, #16161e 100%);
+}
+
+.lines {
+  background-image:
+    repeating-linear-gradient(35deg, rgba(192, 202, 245, 0.10) 0 1px, transparent 1px 9px),
+    repeating-linear-gradient(-55deg, rgba(192, 202, 245, 0.06) 0 1px, transparent 1px 14px),
+    repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.18) 0 2px, transparent 2px 23px),
+    repeating-radial-gradient(circle at 20% 80%, transparent 0 18px, rgba(247, 118, 142, 0.08) 18px 19px);
+  animation: slide 14s linear infinite;
+}
+
+@keyframes slide {
+  to {
+    background-position: 90px 0, -140px 0, 0 230px, 0 0;
+  }
+}
+
+.clutter svg {
+  position: absolute;
+  top: -20%;
+  left: -20%;
+  width: 140%;
+  height: 140%;
+  fill: none;
+  stroke: #c0caf5;
+  stroke-linecap: round;
+  animation: drift 60s linear infinite;
+}
+
+.clutter .hot {
+  stroke: #f7768e;
+}
+
+.clutter .dot {
+  fill: #c0caf5;
+  stroke: none;
+}
+
+.clutter .dashed {
+  animation: crawl 2.5s linear infinite;
+}
+
+@keyframes drift {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes crawl {
+  to {
+    stroke-dashoffset: -12;
+  }
+}
+
+.noise {
+  opacity: .5;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Focused: the clutter collapses into the dot and the calm layer takes over. */
+body.focused .calm {
+  opacity: 1;
+}
+
+body.focused .lines {
+  opacity: 0;
+  transform: scale(.3);
+}
+
+body.focused .clutter {
+  opacity: 0;
+  transform: scale(0) rotate(-120deg);
+}
+
+body.focused .noise {
+  opacity: 0;
 }
 
 /* Glass container */
@@ -56,62 +158,222 @@ body {
     inset 0 0 25px rgba(255, 255, 255, 0.1);
 }
 
-h3 {
-  font-weight: 800;
-  font-size: 2rem;
-  letter-spacing: 1px;
-  color: #c0caf5;
-  text-shadow: 0 0 10px rgba(122, 162, 247, 0.6);
-  margin-bottom: 1.2rem;
-}
 
+/* The dot */
 #toggle-btn {
+  position: relative;
+  z-index: 1;
   width: 5rem;
   height: 5rem;
-  margin: .4rem;
-  margin-top: 1.2rem;
-  border: solid .02 white;
   border-radius: 999rem;
-  border: none;
-  background: linear-gradient(145deg, #7aa2f74d, rgba(255, 255, 255, 0.19));
+  border: 1px solid transparent;
+  background: #7aa2f7;
   box-shadow:
-    0 4px 15px rgba(122, 162, 247, 0.25),
-    inset 0 0 20px rgba(255, 255, 255, 0.1);
-  color: #c0caf5;
+    0 4px 15px rgba(0, 0, 0, 0.35),
+    0 0 1.5rem rgba(122, 162, 247, 0.3);
+  padding: 0;
+  color: #1a1b26;
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 1.05rem;
+  letter-spacing: .5px;
   font-family: "Nova Square", sans-serif;
   cursor: pointer;
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
+  transition: all 0.6s cubic-bezier(.7, 0, .2, 1);
 }
 
 #toggle-btn:hover {
-  background: linear-gradient(145deg, rgba(122, 162, 247, 0.3), rgba(255, 255, 255, 0.19));
-  box-shadow:
-    0 6px 20px rgba(122, 162, 247, 0.45),
-    inset 0 0 25px rgba(184, 183, 183, 0.2);
-
   transform: scale(1.05);
 }
 
 #toggle-btn:active {
   transform: scale(0.95);
-  box-shadow:
-    0 2px 10px rgba(122, 162, 247, 0.4),
-    inset 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
+#toggle-btn:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 4px;
+}
+
+body.focused #toggle-btn {
+  width: 4.2rem;
+  height: 4.2rem;
+  font-size: 1rem;
+  box-shadow:
+    0 0 0 .45rem rgba(122, 162, 247, 0.08),
+    0 0 2.5rem rgba(122, 162, 247, 0.5);
+}
+
+/* Slow breathing ring around the dot while focused. */
+body.focused #toggle-btn::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  border: 1px solid rgba(122, 162, 247, 0.6);
+  animation: breathe 4s ease-out infinite;
+  pointer-events: none;
+}
+
+@keyframes breathe {
+  from {
+    transform: scale(1);
+    opacity: .7;
+  }
+  to {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+/* Timed session: progress ring fills as time passes, red ring fills while holding to end. */
+#ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  width: 6rem;
+  height: 6rem;
+  transform: translate(-50%, -50%) rotate(-90deg);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .6s ease;
+}
+
+body.session #ring {
+  opacity: 1;
+}
+
+#ring .track {
+  stroke: rgba(122, 162, 247, 0.15);
+}
+
+#ring .progress {
+  stroke: #7aa2f7;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+}
+
+body.ready #ring .progress {
+  transition: stroke-dashoffset 1s linear;
+}
+
+#ring .hold {
+  stroke: #f7768e;
+  stroke-width: 3;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+}
+
+body.holding #ring .hold {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 5s linear;
+}
+
+body.session #toggle-btn::after {
+  display: none;
+}
+
+body.holding #toggle-btn {
+  transform: scale(.88);
+  transition: transform 5s linear;
+}
+
+#hint {
+  position: absolute;
+  top: calc(50% + 3.4rem);
+  left: 0;
+  right: 0;
+  z-index: 1;
+  margin: 0;
+  text-align: center;
+  font-size: .65rem;
+  letter-spacing: .5px;
+  color: rgba(192, 202, 245, 0.7);
+  opacity: 0;
+  transition: opacity .3s ease;
+  pointer-events: none;
+}
+
+body.hinting #hint {
+  opacity: 1;
+}
+
+/* Session name: input before starting, label while running. */
+#session-name,
+#session-label {
+  position: absolute;
+  bottom: .9rem;
+  left: 50%;
+  z-index: 2;
+  width: 12rem;
+  margin: 0;
+  transform: translateX(-50%);
+  text-align: center;
+  font-family: "Nova Square", sans-serif;
+  font-size: .72rem;
+  color: #c0caf5;
+}
+
+#session-name {
+  display: none;
+  padding: .45rem .8rem;
+  border-radius: 999rem;
+  border: 1px solid rgba(192, 202, 245, 0.2);
+  background: rgba(26, 27, 38, 0.75);
+  outline: none;
+}
+
+#session-name::placeholder {
+  color: rgba(192, 202, 245, 0.45);
+}
+
+#session-name:focus {
+  border-color: rgba(122, 162, 247, 0.7);
+  box-shadow: 0 0 0 3px rgba(122, 162, 247, 0.15);
+}
+
+body.timed:not(.focused) #session-name {
+  display: block;
+}
+
+#session-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  letter-spacing: .5px;
+  color: rgba(192, 202, 245, 0.6);
+}
+
+/* Corner buttons and pill */
 .icon {
   display: flex;
   position: fixed;
   top: 0px;
   right: 0px;
+  z-index: 2;
   margin: .5rem;
   width: .8rem;
   cursor: pointer;
   padding: .6rem;
   border-radius: 99999rem;
+}
+
+button.icon {
+  border: none;
+  width: auto;
+}
+
+button.icon img {
+  display: block;
+  width: .8rem;
+}
+
+.icon-left {
+  left: 0px;
+  right: auto;
 }
 
 .glass {
@@ -126,4 +388,35 @@ h3 {
   cursor: pointer;
   backdrop-filter: blur(10px);
   transition: all 0.3s ease;
+}
+
+body.focused .chrome {
+  opacity: .3;
+  box-shadow: none;
+}
+
+body.focused .chrome:hover,
+body.focused .chrome:focus-visible {
+  opacity: 1;
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  html,
+  body,
+  .lines,
+  .clutter svg,
+  .clutter .dashed,
+  body.focused #toggle-btn::after {
+    animation: none;
+  }
+
+  body.ready .layer {
+    transition: opacity .4s ease;
+  }
+
+  body.focused .lines,
+  body.focused .clutter {
+    transform: none;
+  }
 }
