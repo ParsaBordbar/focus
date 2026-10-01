@@ -1,25 +1,4 @@
-const defaultDopamine = [
-  'https://www.tiktok.com/explore',
-  'https://www.instagram.com',
-  'porn',
-];
-
-const defaultGood = [
-  'https://github.com/',
-  'https://www.wikipedia.org/',
-  'https://go.dev/doc/',
-  'https://doc.rust-lang.org/book/title-page.html',
-  'https://www.notion.com/',
-  'https://www.w3schools.com/',
-  'https://www.freecodecamp.org/',
-  'https://www.youtube.com/c/LofiGirl',
-  'https://www.youtube.com/bpluspodcast',
-  'https://channelbpodcast.com/',
-  'https://bpluspodcast.com/',
-  'https://www.youtube.com/c/jadimirmirani',
-  'https://medium.com/@imaginetta/150-educational-websites-for-lifelong-learners-71c1d8e94843',
-  'https://linux1st.com/',
-];
+// Runs on YouTube only. Site blocking lives in background.js.
 
 const ytShorts = {
   header: 'ytd-reel-section-renderer',
@@ -31,27 +10,8 @@ const ytPlayAbles = {
   shelf: 'ytd-rich-shelf-renderer',
 };
 
-
-const getBookmarksByFolderName = (folderName) => {
-  return new Promise((resolve) => {
-    chrome.runtime.sendMessage({ type: 'getBookmarksByFolder', folderName }, (response) => {
-      resolve(response?.urls || []);
-    });
-  });
-}
-
-// Load Websites from book marks
-const loadCustomSites= async() => {
-  const [dopamine, good] = await Promise.all([
-    getBookmarksByFolderName('Dopamine Sites'),
-    getBookmarksByFolderName('Good Sources'),
-  ]);
-
-  return {
-    dopamineWebsites: dopamine.length > 0 ? dopamine : defaultDopamine,
-    goodSources: good.length > 0 ? good : defaultGood,
-  };
-}
+let active = false;
+let observer = null;
 
 const hideYTSection = (sections) => {
   document.querySelectorAll(sections.header).forEach((element) => {
@@ -65,7 +25,8 @@ const hideYTSection = (sections) => {
 }
 
 const observeShorts = () => {
-  const observer = new MutationObserver(() => hideYTSection(ytShorts));
+  if (observer) return;
+  observer = new MutationObserver(() => active && hideYTSection(ytShorts));
   observer.observe(document.body, { childList: true, subtree: true });
 }
 
@@ -79,19 +40,23 @@ const hideYTFeed = () => {
   }
 }
 
-chrome.storage.sync.get(['enabled'], async (result) => {
-  if (result.enabled === false) return;
-
-  const { dopamineWebsites, goodSources } = await loadCustomSites();
-
-  if (dopamineWebsites.some((site) => location.href.startsWith(site))) {
-    const index = Math.floor(Math.random() * goodSources.length);
-    location.replace(goodSources[index]);
-    return;
-  }
-
+const tidyYouTube = () => {
   hideYTFeed();
   hideYTSection(ytShorts);
   hideYTSection(ytPlayAbles);
   observeShorts();
+}
+
+const applySettings = ({ enabled, cleanYouTube }) => {
+  active = enabled && cleanYouTube;
+  if (active) tidyYouTube();
+}
+
+chrome.storage.sync.get(DEFAULT_SETTINGS, applySettings);
+
+chrome.storage.onChanged.addListener((changes, area) => {
+  if (area === 'sync') chrome.storage.sync.get(DEFAULT_SETTINGS, applySettings);
 });
+
+// YouTube is a SPA: clicking a Short or the logo doesn't reload the page.
+document.addEventListener('yt-navigate-finish', () => active && tidyYouTube());
