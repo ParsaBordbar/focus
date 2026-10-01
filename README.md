@@ -1,3 +1,5 @@
+<p align="center"><img src="assets/intro.svg" alt="Focus: from doom scrolling to calm in one click" width="100%" /></p>
+
 <img width="1470" height="934" alt="image" src="https://github.com/user-attachments/assets/34de1a1b-379c-4d6a-819c-90096dcd4718" />
 
 Are you Doom Scroling ? Are you getting traped in shorts & youtube feed? fear not! you can Focous now! just start Focus!
@@ -17,6 +19,16 @@ https://github.com/user-attachments/assets/7b83380e-d922-47f4-b430-f2142113c071
 - Lets you customize which sites to block or promote via **bookmarks**
 - Toggle On/Off from popup
 - Respects your flow — minimal and framework-free
+
+
+## 🎨 Design Note
+The popup is just one dot, and its background tells you which state you're in:
+
+- **Distracted (off)** — restless navy with a red tint, drifting scribbles, crawling dashed lines and film grain. Busy on purpose: it looks the way a feed feels.
+- **Focused (on)** — the clutter collapses into the dot and a still, calm gradient takes over. The dot shrinks a little and breathes slowly.
+- **Timed session** — a ring around the dot fills as time passes. Ending early means holding the dot for 5 seconds while a red ring fills, slow enough that you have to mean it.
+- **Palette & type** — Tokyo Night colors (`#1a1b26`, `#7aa2f7`, `#f7768e`) and the Nova Square font. The settings page uses the same calm palette as focused mode.
+- **No frameworks** — plain HTML/CSS/JS. Animations are CSS, the scribbles are random SVG drawn each time the popup opens, and everything stops if your system asks for reduced motion.
 
 
 ## 🔧 Installation
