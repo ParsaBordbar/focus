@@ -1,53 +1,31 @@
 {
   "manifest_version": 3,
   "name": "Focus",
-  "version": "1.0",
+  "version": "1.1",
   "description": "Hide all distraction, like YT shorts.",
-  "permissions": ["scripting", "storage", "tabs", "bookmarks"],
+  "permissions": ["storage", "tabs", "bookmarks", "webNavigation", "alarms", "notifications"],
   "background": {
-  "service_worker": "background.js"
+    "service_worker": "background.js"
   },
-  "host_permissions": [
-    "https://www.youtube.com/*",
-    "https://www.tiktok.com/*",
-    "https://www.instagram.com/*",
-    "https://github.com/*",
-    "https://www.wikipedia.org/*",
-    "https://go.dev/doc/*",
-    "https://doc.rust-lang.org/book/title-page.html*",
-    "https://www.notion.com/*",
-    "https://www.w3schools.com/*",
-    "https://www.freecodecamp.org/*",
-    "https://www.youtube.com/c/LofiGirl*",
-    "https://www.youtube.com/bpluspodcast*",
-    "https://channelbpodcast.com/*",
-    "https://bpluspodcast.com/*",
-    "https://www.youtube.com/c/jadimirmirani*",
-    "https://medium.com/@imaginetta/150-educational-websites-for-lifelong-learners-71c1d8e94843*",
-    "https://linux1st.com/*"
-  ],
   "content_scripts": [
     {
-"matches": [
-      "*://www.youtube.com/*",
-      "*://www.tiktok.com/*",
-      "*://www.instagram.com/*",
-      "*://www.porn/*",
-      "*://x.com/*",
-      "*://www.x/*"
-    ],
-      "js": ["content.js"],
+      "matches": ["*://www.youtube.com/*"],
+      "js": ["shared.js", "content.js"],
       "run_at": "document_idle"
     }
   ],
+  "options_ui": {
+    "page": "settings.html",
+    "open_in_tab": true
+  },
   "action": {
     "default_title": "Focus",
     "default_popup": "popup.html",
     "default_icon": {
-    "128": "icons/icon128_on.png"
+      "128": "icons/icon128_on.png"
+    }
   },
   "icons": {
-    "128": "icons/icon128_off.png"
-  }  
-}
+    "128": "icons/icon128_on.png"
+  }
 }
