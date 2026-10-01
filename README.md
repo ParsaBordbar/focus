@@ -1,6 +1,5 @@
 <p align="center"><img src="assets/intro.svg" alt="Focus: from doom scrolling to calm in one click" width="100%" /></p>
 
-<img width="1470" height="934" alt="image" src="https://github.com/user-attachments/assets/34de1a1b-379c-4d6a-819c-90096dcd4718" />
 
 Are you Doom Scroling ? Are you getting traped in shorts & youtube feed? fear not! you can Focous now! just start Focus!
 
