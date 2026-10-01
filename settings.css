@@ -1,0 +1,366 @@
+@import url("https://fonts.googleapis.com/css2?family=Nova+Square&display=swap");
+
+/* Same palette as the popup's focused mode (Tokyo Night). */
+:root {
+  --bg: #1a1b26;
+  --bg-deep: #16161e;
+  --bg-lift: #24283b;
+  --text: #c0caf5;
+  --muted: rgba(192, 202, 245, 0.55);
+  --faint: rgba(192, 202, 245, 0.08);
+  --border: rgba(192, 202, 245, 0.12);
+  --card: rgba(36, 40, 59, 0.55);
+  --field: rgba(22, 22, 30, 0.7);
+  --accent: #7aa2f7;
+  --glow: rgba(122, 162, 247, 0.45);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background: var(--bg);
+}
+
+body {
+  min-height: 100vh;
+  padding: 3rem 1rem;
+  color: var(--text);
+  font-family: system-ui, -apple-system, sans-serif;
+  background: radial-gradient(circle at 50% 0%, var(--bg-lift) 0%, var(--bg) 45%, var(--bg-deep) 100%) fixed;
+}
+
+main {
+  max-width: 40rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: .5rem;
+}
+
+header img {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 .4rem rgba(192, 202, 245, 0.05),
+    0 0 2rem var(--glow);
+}
+
+h1 {
+  margin: 0;
+  font-family: "Nova Square", sans-serif;
+  font-size: 2.4rem;
+  letter-spacing: 1px;
+  color: var(--text);
+  text-shadow: 0 0 10px rgba(122, 162, 247, 0.35);
+}
+
+header p {
+  margin: 0;
+  color: var(--muted);
+  font-family: "Nova Square", sans-serif;
+  font-size: .8rem;
+  letter-spacing: .5em;
+  text-transform: uppercase;
+}
+
+.card {
+  padding: 1.25rem 1.5rem;
+  border-radius: 1.5rem;
+  border: 1px solid var(--border);
+  background: var(--card);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+}
+
+h2 {
+  margin: 0 0 .75rem;
+  font-family: "Nova Square", sans-serif;
+  font-size: 1.15rem;
+  font-weight: 400;
+  letter-spacing: .5px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .75rem 0;
+  cursor: pointer;
+}
+
+.row + .row {
+  border-top: 1px solid var(--border);
+}
+
+.row strong {
+  display: block;
+  font-weight: 600;
+}
+
+.row small,
+.hint {
+  display: block;
+  margin-top: .2rem;
+  color: var(--muted);
+  font-size: .85rem;
+  line-height: 1.4;
+}
+
+.hint {
+  margin: 0 0 .75rem;
+}
+
+.hint em {
+  color: var(--text);
+  font-style: normal;
+}
+
+code {
+  padding: .05rem .3rem;
+  border-radius: .3rem;
+  background: var(--field);
+  color: var(--accent);
+  font-size: .8rem;
+}
+
+/* Toggle switch: on looks like the focused dot. */
+.switch {
+  position: relative;
+  flex-shrink: 0;
+  width: 2.9rem;
+  height: 1.6rem;
+}
+
+.switch input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.slider {
+  position: absolute;
+  inset: 0;
+  border-radius: 999rem;
+  background: var(--field);
+  border: 1px solid var(--border);
+  transition: background .25s ease, box-shadow .25s ease;
+  pointer-events: none;
+}
+
+.slider::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: .2rem;
+  width: 1.15rem;
+  height: 1.15rem;
+  border-radius: 50%;
+  background: var(--muted);
+  transform: translateY(-50%);
+  transition: transform .25s ease, background .25s ease;
+}
+
+.switch input:checked + .slider {
+  background: rgba(122, 162, 247, 0.25);
+  border-color: rgba(122, 162, 247, 0.5);
+}
+
+.switch input:checked + .slider::before {
+  background: var(--text);
+  box-shadow: 0 0 .8rem var(--glow);
+  transform: translate(1.25rem, -50%);
+}
+
+.switch input:focus-visible + .slider {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.switch input:disabled {
+  cursor: not-allowed;
+}
+
+.switch input:disabled + .slider {
+  opacity: .45;
+}
+
+.minutes {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: .4rem;
+  color: var(--muted);
+  font-size: .85rem;
+}
+
+.minutes input {
+  width: 4.5rem;
+  padding: .45rem .6rem;
+  border-radius: .6rem;
+  border: 1px solid var(--border);
+  background: var(--field);
+  color: var(--text);
+  font: inherit;
+  font-size: .95rem;
+  text-align: center;
+}
+
+.minutes input:focus {
+  outline: none;
+  border-color: rgba(122, 162, 247, 0.6);
+  box-shadow: 0 0 0 3px rgba(122, 162, 247, 0.15);
+}
+
+.minutes input:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+}
+
+#session-status:empty {
+  display: none;
+}
+
+.history {
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.history li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .55rem .8rem;
+  border-radius: .7rem;
+  border: 1px solid var(--border);
+  background: var(--faint);
+  font-size: .9rem;
+}
+
+.history li span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.history small {
+  flex-shrink: 0;
+  color: var(--muted);
+}
+
+textarea {
+  width: 100%;
+  resize: vertical;
+  padding: .75rem;
+  border-radius: .8rem;
+  border: 1px solid var(--border);
+  background: var(--field);
+  color: var(--text);
+  font: .9rem/1.5 ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+textarea::placeholder {
+  color: rgba(192, 202, 245, 0.3);
+}
+
+textarea:focus {
+  outline: none;
+  border-color: rgba(122, 162, 247, 0.6);
+  box-shadow: 0 0 0 3px rgba(122, 162, 247, 0.15);
+}
+
+details {
+  margin-top: .75rem;
+}
+
+summary {
+  cursor: pointer;
+  color: var(--muted);
+  font-size: .85rem;
+}
+
+summary:hover {
+  color: var(--text);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+  margin: .6rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chips li {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: .2rem .6rem;
+  border-radius: 999rem;
+  border: 1px solid var(--border);
+  background: var(--faint);
+  font-size: .78rem;
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+#save {
+  padding: .7rem 1.6rem;
+  border-radius: 999rem;
+  border: none;
+  background: var(--text);
+  box-shadow:
+    0 0 0 .3rem rgba(192, 202, 245, 0.06),
+    0 0 1.5rem rgba(122, 162, 247, 0.35);
+  color: var(--bg);
+  font-family: "Nova Square", sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+#save:hover {
+  transform: scale(1.04);
+  box-shadow:
+    0 0 0 .3rem rgba(192, 202, 245, 0.08),
+    0 0 2rem var(--glow);
+}
+
+#save:active {
+  transform: scale(0.97);
+}
+
+#save:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+#status {
+  color: var(--muted);
+  font-size: .9rem;
+}

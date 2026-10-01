@@ -3,18 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-      body { font-family: sans-serif; padding: 10px; }
-    </style>
-    <link rel="stylesheet" href="popup.css" />
-    <style>
-    @import url('https://fonts.googleapis.com/css2?family=Nova+Square&display=swap');
-    </style>
+    <title>Focus Settings</title>
+    <link rel="stylesheet" href="settings.css" />
 </head>
-<body class="settings-pagey">
-    <label class="switch">
-    <input type="checkbox">
-    <span class="slider round"></span>
-</label>
+<body>
+  <main>
+    <header>
+      <img src="icons/icon128_on.png" alt="">
+      <div>
+        <h1>Focus</h1>
+        <p>Settings</p>
+      </div>
+    </header>
+
+    <section class="card">
+      <h2>Modes</h2>
+      <label class="row">
+        <span>
+          <strong>Focus</strong>
+          <small>Block distracting sites and send you somewhere useful instead.</small>
+        </span>
+        <span class="switch"><input type="checkbox" id="enabled"><span class="slider"></span></span>
+      </label>
+      <label class="row">
+        <span>
+          <strong>No AI mode</strong>
+          <small>Also block AI chatbots (ChatGPT, Claude, Gemini, Copilot…) while Focus is on. Think for yourself for a bit.</small>
+        </span>
+        <span class="switch"><input type="checkbox" id="noAI"><span class="slider"></span></span>
+      </label>
+      <label class="row">
+        <span>
+          <strong>Clean YouTube</strong>
+          <small>Hide Shorts and the home feed, and open Subscriptions instead.</small>
+        </span>
+        <span class="switch"><input type="checkbox" id="cleanYouTube"><span class="slider"></span></span>
+      </label>
+    </section>
+
+    <section class="card">
+      <h2>Timed sessions</h2>
+      <label class="row">
+        <span>
+          <strong>Timed sessions</strong>
+          <small>Starting Focus starts a timer and keeps Focus on until it runs out. To end early, hold the dot for 5 seconds.</small>
+        </span>
+        <span class="switch"><input type="checkbox" id="timedSessions"><span class="slider"></span></span>
+      </label>
+      <label class="row" for="sessionMinutes">
+        <span>
+          <strong>Session length</strong>
+          <small>In minutes, from 1 to 240. Name each session in the popup before you start.</small>
+        </span>
+        <span class="minutes"><input type="number" id="sessionMinutes" min="1" max="240" step="1" inputmode="numeric"><span>min</span></span>
+      </label>
+      <p class="hint" id="session-status" role="status"></p>
+      <ul class="history" id="history"></ul>
+    </section>
+
+    <section class="card">
+      <h2>Blocked sites</h2>
+      <p class="hint">
+        One per line: a domain (<code>reddit.com</code>), a domain and path (<code>discord.com/channels</code>),
+        or a single word to block any domain containing it. These are added to the built-in list
+        and your <em>Dopamine Sites</em> bookmarks folder.
+      </p>
+      <textarea id="blockedSites" rows="6" spellcheck="false" placeholder="reddit.com"></textarea>
+      <details>
+        <summary>Built-in list (<span id="dopamine-count"></span>)</summary>
+        <ul class="chips" id="dopamine-defaults"></ul>
+      </details>
+      <details>
+        <summary>No AI mode list (<span id="ai-count"></span>)</summary>
+        <ul class="chips" id="ai-defaults"></ul>
+      </details>
+    </section>
+
+    <section class="card">
+      <h2>Good sources</h2>
+      <p class="hint">
+        Blocked tabs are sent to a random one of these. If you add any here or to your
+        <em>Good Sources</em> bookmarks folder, they replace the built-in list.
+      </p>
+      <textarea id="goodSites" rows="6" spellcheck="false" placeholder="https://en.wikipedia.org/wiki/Special:Random"></textarea>
+      <details>
+        <summary>Built-in list (<span id="good-count"></span>)</summary>
+        <ul class="chips" id="good-defaults"></ul>
+      </details>
+    </section>
+
+    <footer>
+      <button id="save">Save lists</button>
+      <span id="status" role="status"></span>
+    </footer>
+  </main>
+  <script src="shared.js"></script>
+  <script src="settings.js"></script>
 </body>
 </html>
