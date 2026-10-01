@@ -8,7 +8,6 @@ Are you Doom Scroling ? Are you getting traped in shorts & youtube feed? fear no
 
 ## Features
 
-https://github.com/user-attachments/assets/7b83380e-d922-47f4-b430-f2142113c071
 - Automatically redirects from distracting websites (e.g. TikTok, Instagram, Shorts)
 - Hides YouTube Shorts and other addictive sections
 - Redirects you to a random productive website instead
