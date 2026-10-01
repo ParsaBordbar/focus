@@ -1,9 +1,9 @@
 <p align="center"><img src="assets/intro.svg" alt="Focus: from doom scrolling to calm in one click" width="100%" /></p>
 
+# FOCUS
 
 Are you Doom Scroling ? Are you getting traped in shorts & youtube feed? fear not! you can Focous now! just start Focus!
 
-[![نسخه فارسی](https://img.shields.io/badge/نسخه_فارسی-README-green?style=flat-square)](https://github.com/ParsaBordbar/focus/blob/main/README-Persian.md)
 
 
 ## Features
