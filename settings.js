@@ -36,7 +36,6 @@ toggles.forEach((key) => {
   });
 });
 
-// Lists save on click, not while typing: a half-typed word like "red" would already block every domain containing it.
 lists.forEach((key) => $(key).addEventListener('input', () => showStatus('Unsaved changes', true)));
 
 $('save').addEventListener('click', () => {
@@ -61,7 +60,6 @@ $('save').addEventListener('click', () => {
   });
 });
 
-// Keep toggles in sync when they're flipped from the popup.
 chrome.storage.onChanged.addListener((changes, area) => {
   if (area !== 'sync') return;
   toggles.forEach((key) => {
@@ -69,7 +67,6 @@ chrome.storage.onChanged.addListener((changes, area) => {
   });
 });
 
-// Timed sessions: length input, lock while a session runs, and today's completed sessions.
 const clampMinutes = (value) => Math.min(MAX_SESSION_MINUTES, Math.max(MIN_SESSION_MINUTES, Math.round(Number(value)) || DEFAULT_SETTINGS.sessionMinutes));
 
 const formatTime = (ms) => new Date(ms).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -80,7 +77,6 @@ const renderSessions = async () => {
     chrome.storage.local.get({ session: null, history: [] }),
   ]);
 
-  // Turning things off from here would sidestep hold-to-end, so lock them while a session runs.
   const locked = enabled && isSessionActive(session);
   $('enabled').disabled = locked;
   $('timedSessions').disabled = locked;
@@ -115,5 +111,4 @@ $('sessionMinutes').addEventListener('change', (event) => {
 
 renderSessions();
 chrome.storage.onChanged.addListener(renderSessions);
-// The lock lifts on its own when a session ends; this just keeps the text fresh in between.
 setInterval(renderSessions, 30000);

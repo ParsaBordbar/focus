@@ -1,5 +1,3 @@
-// Runs on YouTube only. Site blocking lives in background.js.
-
 const ytShorts = {
   header: 'ytd-reel-section-renderer',
   shelf: 'ytd-reel-shelf-renderer',
@@ -58,5 +56,4 @@ chrome.storage.onChanged.addListener((changes, area) => {
   if (area === 'sync') chrome.storage.sync.get(DEFAULT_SETTINGS, applySettings);
 });
 
-// YouTube is a SPA: clicking a Short or the logo doesn't reload the page.
 document.addEventListener('yt-navigate-finish', () => active && tidyYouTube());

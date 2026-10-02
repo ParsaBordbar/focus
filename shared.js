@@ -1,5 +1,3 @@
-// Loaded by background.js (importScripts), content.js, popup.html and settings.html.
-
 const DEFAULT_SETTINGS = {
   enabled: true,
   noAI: false,
@@ -10,8 +8,6 @@ const DEFAULT_SETTINGS = {
   sessionMinutes: 25,
 };
 
-// Timed sessions live in storage.local, not sync: the running `session` ({ start, end, name }),
-// `sessionName` (last name typed in the popup) and `history` of completed sessions, newest first.
 const HOLD_TO_END_MS = 5000;
 const MIN_SESSION_MINUTES = 1;
 const MAX_SESSION_MINUTES = 240;
@@ -19,7 +15,6 @@ const MAX_HISTORY = 100;
 
 const isSessionActive = (session) => Boolean(session && session.end > Date.now());
 
-// Entries are a domain, a domain + path, or a single word matched against the hostname.
 const DOPAMINE_SITES = [
   'tiktok.com',
   'instagram.com',
@@ -86,7 +81,6 @@ const stripWww = (host) => host.replace(/^www\./, '');
 
 const toUrl = (entry) => (entry.includes('://') ? entry : `https://${entry}`);
 
-// Returns { keyword } or { host, path }, or null when the entry can't be understood.
 const parseEntry = (entry) => {
   const raw = entry.trim().toLowerCase();
   if (!raw) return null;
@@ -100,7 +94,6 @@ const parseEntry = (entry) => {
   }
 };
 
-// Good sources are redirect targets, so they need a real host (no keywords, no bookmarklets).
 const isValidGoodSite = (entry) => {
   try {
     const url = new URL(toUrl(entry.trim()));

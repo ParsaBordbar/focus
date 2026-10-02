@@ -1,4 +1,3 @@
-// Random scribbles, rings and dashes for the "distracted" background.
 const drawClutter = () => {
   const svg = document.getElementById('clutter');
   const ns = 'http://www.w3.org/2000/svg';
@@ -111,14 +110,12 @@ document.addEventListener("DOMContentLoaded", () => {
   chrome.storage.local.get({ sessionName: '' }, ({ sessionName }) => (nameInput.value = sessionName));
 
   refresh().then(() => {
-    // Enable transitions only after the first paint, so opening the popup doesn't animate.
     requestAnimationFrame(() => requestAnimationFrame(() => body.classList.add('ready')));
   });
 
   chrome.storage.onChanged.addListener(refresh);
   setInterval(() => inSession() && render(), 1000);
 
-  // Ending a timed session early takes a deliberate hold, not a click.
   const startHold = () => {
     if (!inSession() || holdTimer) return;
     body.classList.add('holding');
@@ -152,8 +149,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (event.key === ' ' || event.key === 'Enter') cancelHold();
   });
 
-  // background.js reacts to the storage change: redirects open tabs and starts the timer if enabled.
-  // The session name goes in first so the timer picks it up.
   const toggle = async () => {
     if (!state.settings.enabled) await chrome.storage.local.set({ sessionName: nameInput.value.trim() });
     chrome.storage.sync.set({ enabled: !state.settings.enabled });
