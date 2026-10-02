@@ -34,7 +34,7 @@ The popup is just one dot, and its background tells you which state you're in:
 1. Clone or download this repository:
 
 ```bash
-git clone https://github.com/ParsaBordbarfocus.git
+git clone https://github.com/ParsaBordbar/focus.git
 ```
 
 Open Chrome and go to:
