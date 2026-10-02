@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Focus",
   "version": "1.1",
-  "description": "Hide all distraction, like YT shorts.",
+  "description": "Block doom-scrolling sites, hide YouTube Shorts, and lock yourself into timed focus sessions.",
   "permissions": ["storage", "tabs", "bookmarks", "webNavigation", "alarms", "notifications"],
   "background": {
     "service_worker": "background.js"
@@ -22,10 +22,16 @@
     "default_title": "Focus",
     "default_popup": "popup.html",
     "default_icon": {
+      "16": "icons/icon16_on.png",
+      "32": "icons/icon32_on.png",
+      "48": "icons/icon48_on.png",
       "128": "icons/icon128_on.png"
     }
   },
   "icons": {
+    "16": "icons/icon16_on.png",
+    "32": "icons/icon32_on.png",
+    "48": "icons/icon48_on.png",
     "128": "icons/icon128_on.png"
   }
 }

@@ -1,4 +1,4 @@
-importScripts('shared.js');
+if (typeof importScripts === 'function') importScripts('shared.js');
 
 const getBookmarksByFolder = async (folderName) => {
   const tree = await chrome.bookmarks.getTree();
@@ -18,7 +18,6 @@ const getBookmarksByFolder = async (folderName) => {
   return urls;
 }
 
-// Blocked sites add up (defaults + bookmarks + settings); custom good sources replace the defaults.
 const loadRules = async () => {
   const settings = await chrome.storage.sync.get(DEFAULT_SETTINGS);
   const [dopamineBookmarks, goodBookmarks] = await Promise.all([
@@ -60,13 +59,14 @@ const onNavigate = async ({ tabId, frameId, url }) => {
 chrome.webNavigation.onBeforeNavigate.addListener(onNavigate);
 chrome.webNavigation.onHistoryStateUpdated.addListener(onNavigate);
 
-// Prerendered and back/forward-cached pages can show up without onBeforeNavigate for this tab.
 chrome.tabs.onUpdated.addListener(async (tabId, { url }) => {
   if (url) redirectIfBlocked(tabId, url, await loadRules());
 });
 
+const iconPaths = (state) => Object.fromEntries([16, 32, 48, 128].map((size) => [size, `icons/icon${size}_${state}.png`]));
+
 const updateIcon = (enabled) => {
-  chrome.action.setIcon({ path: enabled ? 'icons/icon128_on.png' : 'icons/icon128_off.png' });
+  chrome.action.setIcon({ path: iconPaths(enabled ? 'on' : 'off') });
 }
 
 const SESSION_ALARM = 'focus-session-end';
@@ -101,8 +101,6 @@ const clearSession = async () => {
   chrome.action.setBadgeText({ text: '' });
 }
 
-// Only sessions that run out count; ending early with hold-to-end doesn't.
-// The startup check and a missed alarm can both fire at once, hence the flag.
 let completing = false;
 const completeSession = async () => {
   if (completing) return;
@@ -138,7 +136,6 @@ chrome.alarms.onAlarm.addListener(async ({ name }) => {
   }
 });
 
-// Starting Focus or changing the rules also cleans up tabs that are already open.
 chrome.storage.onChanged.addListener(async (changes, area) => {
   if (area !== 'sync') return;
 
@@ -161,7 +158,6 @@ chrome.action.setBadgeTextColor?.({ color: '#1a1b26' });
 
 chrome.storage.sync.get(DEFAULT_SETTINGS).then(({ enabled }) => updateIcon(enabled));
 
-// Alarms aren't guaranteed to survive a browser restart, so re-check the session whenever the worker starts.
 getSession().then((session) => {
   if (!session) return;
   if (isSessionActive(session)) scheduleSession(session);
