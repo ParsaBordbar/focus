@@ -1,6 +1,11 @@
-@import url("https://fonts.googleapis.com/css2?family=Nova+Square&display=swap");
+@font-face {
+  font-family: "Nova Square";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/NovaSquare-Regular.woff2") format("woff2");
+}
 
-/* Same palette as the popup's focused mode (Tokyo Night). */
 :root {
   --bg: #1a1b26;
   --bg-deep: #16161e;
@@ -136,7 +141,6 @@ code {
   font-size: .8rem;
 }
 
-/* Toggle switch: on looks like the focused dot. */
 .switch {
   position: relative;
   flex-shrink: 0;

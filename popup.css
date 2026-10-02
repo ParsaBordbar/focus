@@ -1,4 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Nova+Square&display=swap");
+@font-face {
+  font-family: "Nova Square";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/NovaSquare-Regular.woff2") format("woff2");
+}
 
 .nova-square-regular {
   font-family: "Nova Square", sans-serif;
@@ -18,7 +24,6 @@ body {
   color: #7aa2f7;
   font-family: "Nova Square", sans-serif;
   overflow: hidden;
-  /* Distracted: Focus-mode navy with a restless red tint. */
   background: linear-gradient(135deg, #3b2133, #24283b, #1f2335, #2a1f30, #3b2133);
   background-size: 100% 200%;
   animation: gradientShift 10s ease infinite;
@@ -40,7 +45,6 @@ body {
   }
 }
 
-/* Background layers */
 .layer {
   position: absolute;
   inset: 0;
@@ -48,7 +52,6 @@ body {
   pointer-events: none;
 }
 
-/* Transitions switch on after the first render so the popup doesn't animate on open. */
 body.ready .layer {
   transition:
     opacity .9s ease,
@@ -118,7 +121,6 @@ body.ready .layer {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* Focused: the clutter collapses into the dot and the calm layer takes over. */
 body.focused .calm {
   opacity: 1;
 }
@@ -137,7 +139,6 @@ body.focused .noise {
   opacity: 0;
 }
 
-/* Glass container */
 .glass-container {
   backdrop-filter: blur(18px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
@@ -158,8 +159,6 @@ body.focused .noise {
     inset 0 0 25px rgba(255, 255, 255, 0.1);
 }
 
-
-/* The dot */
 #toggle-btn {
   position: relative;
   z-index: 1;
@@ -203,7 +202,6 @@ body.focused #toggle-btn {
     0 0 2.5rem rgba(122, 162, 247, 0.5);
 }
 
-/* Slow breathing ring around the dot while focused. */
 body.focused #toggle-btn::after {
   content: "";
   position: absolute;
@@ -225,7 +223,6 @@ body.focused #toggle-btn::after {
   }
 }
 
-/* Timed session: progress ring fills as time passes, red ring fills while holding to end. */
 #ring {
   position: absolute;
   top: 50%;
@@ -301,7 +298,6 @@ body.hinting #hint {
   opacity: 1;
 }
 
-/* Session name: input before starting, label while running. */
 #session-name,
 #session-label {
   position: absolute;
@@ -347,7 +343,6 @@ body.timed:not(.focused) #session-name {
   color: rgba(192, 202, 245, 0.6);
 }
 
-/* Corner buttons and pill */
 .icon {
   display: flex;
   position: fixed;
@@ -399,7 +394,6 @@ body.focused .chrome:hover,
 body.focused .chrome:focus-visible {
   opacity: 1;
 }
-
 
 @media (prefers-reduced-motion: reduce) {
   html,
